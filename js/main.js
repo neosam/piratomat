@@ -1,9 +1,7 @@
 require.config({
     packages: [
-        { name: 'neoforms'
-        , location: 'libs/neoforms' },
-        { name: 'neotools'
-        , location: 'libs/neotools' }
+        { name: 'piratomat'
+        , location: 'libs/piratomat' },
     ],
 
     paths: {
@@ -17,7 +15,7 @@ require.config({
             attach: '_'
         },
         'backbone': {
-            deps: ['use!underscore', 'libs/jquery/jquery'],
+            deps: ['use!underscore', 'jquery'],
             attach: function(_, $) {
                 return Backbone;
             }
