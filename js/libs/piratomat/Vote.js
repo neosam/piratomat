@@ -46,6 +46,11 @@ define(['use!backbone'], function(Backbone) {
              */
             wtfVotes: 0,
 
+            /**
+             * This is used to order the votes
+             */
+            order: 0,
+
             /** 
              * State currently selected by the user.
              * Possible is 'yes', 'no' and 'wtf'.
@@ -69,13 +74,13 @@ define(['use!backbone'], function(Backbone) {
         addVote: function() {
             var returnValue = this.state;
             switch (returnValue) {
-            case: 'yes':
+            case 'yes':
                 yesVotes++;
                 break;
-            case: 'no':
+            case 'no':
                 noVotes++;
                 break;
-            case: 'wtf':
+            case 'wtf':
                 wtfVotes++;
                 break;
             default:
