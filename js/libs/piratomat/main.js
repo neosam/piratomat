@@ -13,3 +13,18 @@
     You should have received a copy of the GNU General Public License
     along with Piratomat.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+define([
+    './Vote',
+    './VoteCollection',
+    './SimpleVoteView'
+], function(
+    Vote,
+    VoteCollection,
+    SimpleVoteView) {
+    return {
+        Vote: Vote,
+        VoteCollection: VoteCollection,
+        SimpleVoteView: SimpleVoteView
+    }
+});
