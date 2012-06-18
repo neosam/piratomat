@@ -1,0 +1,24 @@
+body {
+    background-color: orange;
+    .voteView table {
+        border-collapse: collapse;
+        border-spacing: 0px;
+        empty-cells: hide;
+        :first-child {
+            width: 85%;
+        }
+        td {
+            border: solid black 1px;
+        }
+        td:empty {
+            visibility: hidden;
+        }
+    }
+
+    .voteView div.voteField {
+        width: 64px;
+        height: 64px;
+        display: inline-block;
+        background: url(media/voteField.svg);
+    }
+}
