@@ -31,12 +31,51 @@ define([
         className: 'simpleVoteView',
         tagName: 'tr',
 
-        events: {
-            'click voteField': 'voteEvent'
+        initialize: function() {
+            var $el = this.$el;
+            this.model.on('change:state', function(model, state) {
+                $el.find('.voteField').removeClass('voteChecked');
+                switch (state) {
+                case 'yes':
+                    $el.find('.voteYes').addClass('voteChecked');
+                    break;
+                case 'no':
+                    $el.find('.voteNo').addClass('voteChecked');
+                    break;
+                case 'wtf':
+                    $el.find('.voteWtf').addClass('voteChecked');
+                    break;
+                default:
+                    break;
+                }
+            });
         },
 
-        voteEvent: function() {
-            console.log(attributes);
+        events: {
+            'click .voteField': 'voteEvent'
+        },
+
+        voteEvent: function(ev) {
+            console.log(ev);
+            var classList = ev.srcElement.classList,
+                model = this.model;
+            _.each(classList, function(className) {
+                switch (className) {
+                case 'voteYes':
+                    model.set('state', 'yes');
+                    break;
+                case 'voteNo':
+                    model.set('state', 'no');
+                    break;
+                case 'voteWtf':
+                    model.set('state', 'wtf');
+                    break;
+                default:
+                    /* nothing:  not yes, no or wtf */
+                    break;
+                }
+            })
+
         },
 
         render: function() {
