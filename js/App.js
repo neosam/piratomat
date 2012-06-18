@@ -26,11 +26,9 @@ define([
 
     return function() {
         var voteCollection = generateVotes(),
-            view = new Piratomat.SimpleVoteView({
-                model: voteCollection.at(0)
+            view = new Piratomat.VoteView({
+                model: voteCollection
             });
-            tableView = $('<table></table>');
-        view.render().$el.appendTo(tableView);
-        tableView.appendTo('body');
+        view.render().$el.appendTo('body');
     }
 });

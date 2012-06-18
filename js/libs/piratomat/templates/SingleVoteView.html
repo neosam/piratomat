@@ -1,4 +1,4 @@
-/*  This file is part of Piratomat.
+<!--  This file is part of Piratomat.
 
     Piratomat is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -12,23 +12,9 @@
 
     You should have received a copy of the GNU General Public License
     along with Piratomat.  If not, see <http://www.gnu.org/licenses/>.
-*/
+-->
 
-define([
-    './Vote',
-    './VoteCollection',
-    './SingleVoteView',
-    './VoteView'
-], function(
-    Vote,
-    VoteCollection,
-    SingleVoteView,
-    VoteView
-) {
-    return {
-        Vote: Vote,
-        VoteCollection: VoteCollection,
-        SingleVoteView: SingleVoteView,
-        VoteView: VoteView
-    }
-});
+    <td><%- model.get('question') %></td>
+    <td><div class="voteField voteYes"/></td>
+    <td><div class="voteField voteNo"/></td>
+    <td><div class="voteField voteWtf"/></td>
