@@ -26,9 +26,12 @@ define([
 
     return function() {
         var voteCollection = generateVotes(),
+            $pirateLogo = $('<img src="media/piraten-landshut.svg">');
             view = new Piratomat.VoteView({
                 model: voteCollection
             });
+        $pirateLogo.addClass('logo');
+        $pirateLogo.appendTo('body');
         view.render().$el.appendTo('body');
     }
 });
