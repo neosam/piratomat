@@ -57,7 +57,7 @@ define([
         },
 
         voteEvent: function(ev) {
-            var classList = ev.srcElement.classList,
+            var classList = ev.target.classList,
                 model = this.model;
             _.each(classList, function(className) {
                 switch (className) {
