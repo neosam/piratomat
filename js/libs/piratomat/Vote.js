@@ -22,6 +22,8 @@
  * of this, you can only use this object on client side, not on 
  * server side.
  */
+
+/*global define*/
 define(['use!backbone'], function(Backbone) {
     'use strict';
     return Backbone.Model.extend({
@@ -72,22 +74,22 @@ define(['use!backbone'], function(Backbone) {
          * @return 'yes', 'no', 'wtf' on succcess or null on fail.
          */
         addVote: function() {
-            var returnValue = this.state;
+            var returnValue = this.get('state');
             switch (returnValue) {
             case 'yes':
-                yesVotes++;
+                this.set('yesVotes', this.get('yesVotes') + 1);
                 break;
             case 'no':
-                noVotes++;
+                this.set('noVotes', this.get('noVotes') + 1);
                 break;
             case 'wtf':
-                wtfVotes++;
+                this.set('wtfVotes', this.get('wtfVotes') + 1);
                 break;
             default:
                 returnValue = null;
                 break;
             }
-            this.state = '';
+            this.set('state', '');
             return returnValue;
         }
     });

@@ -18,6 +18,7 @@
  * All Votes are grouped in this Collection.
  * @class VoteCollection
  */
+/*global define*/
 define(['use!backbone','./Vote'], function(Backbone, Vote) {
     return Backbone.Collection.extend({
         model: Vote

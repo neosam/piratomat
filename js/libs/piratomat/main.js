@@ -14,6 +14,7 @@
     along with Piratomat.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*global define*/
 define([
     './Vote',
     './VoteCollection',
@@ -30,5 +31,5 @@ define([
         VoteCollection: VoteCollection,
         SingleVoteView: SingleVoteView,
         VoteView: VoteView
-    }
+    };
 });

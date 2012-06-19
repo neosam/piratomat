@@ -19,6 +19,7 @@
  * This meight bei used by VoteView to generate a vote form
  * for a collection of votes.
  */
+/*global define*/
 define([
     'jquery',
     'use!underscore',
@@ -56,7 +57,6 @@ define([
         },
 
         voteEvent: function(ev) {
-            console.log(ev);
             var classList = ev.srcElement.classList,
                 model = this.model;
             _.each(classList, function(className) {
@@ -74,7 +74,7 @@ define([
                     /* nothing:  not yes, no or wtf */
                     break;
                 }
-            })
+            });
 
         },
 

@@ -19,6 +19,7 @@
  * It includes a SimpleVoteview for each Vote which is stored
  * in the VoteCollection and a submit button to send the votes
  */
+/*global define*/
 define([
     'jquery',
     'use!underscore',
@@ -29,6 +30,16 @@ define([
     return Backbone.View.extend({
         className: 'voteView',
         tagName: 'div',
+
+        events: {
+            'click button': 'doVote'
+        },
+
+        doVote: function() {
+            this.model.each(function(vote) {
+                vote.addVote();
+            });
+        },
 
         render: function() {
             var $el = this.$el,
@@ -42,13 +53,13 @@ define([
             $firstRow.append($('<td>Wei&szlig; nicht</td>'));
             $table.append($firstRow);
             this.model.each(function(model)  {
-                var singleVoteView = new SingleVoteView({
+                new SingleVoteView({
                     model: model
                 }).render().$el.appendTo($table);
             });
 
             $table.appendTo($el);
-            $submit.html('Vote')
+            $submit.html('Vote');
             $submit.appendTo($el);
             return this;
         }
