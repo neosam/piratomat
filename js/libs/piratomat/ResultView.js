@@ -15,8 +15,8 @@
 */
 
 /**
- * VoteView displays a complete form.
- * It includes a SimpleVoteview for each Vote which is stored
+ * VoteView displays the result of all votes.
+ * It includes a SimpleResultView for each Vote which is stored
  * in the VoteCollection and a submit button to send the votes
  */
 /*global define*/
@@ -24,22 +24,19 @@ define([
     'jquery',
     'use!underscore',
     'use!backbone',
-    './SingleVoteView',
+    './SingleResultView',
     './Vote'
-], function($, _, Backbone, SingleVoteView, Vote) {
+], function($, _, Backbone, SingleResultView, Vote) {
     return Backbone.View.extend({
         className: 'voteView',
         tagName: 'div',
 
         events: {
-            'click button': 'doVote'
+            'click button': 'newVote'
         },
 
-        doVote: function() {
-            this.model.each(function(vote) {
-                vote.addVote();
-            });
-            this.showResultView();
+        newVote: function() {
+            this.doNewVote();
         },
 
         render: function() {
@@ -54,13 +51,13 @@ define([
             $firstRow.append($('<td>Wei&szlig; nicht</td>'));
             $table.append($firstRow);
             this.model.each(function(model)  {
-                new SingleVoteView({
+                new SingleResultView({
                     model: model
                 }).render().$el.appendTo($table);
             });
 
             $table.appendTo($el);
-            $submit.html('Vote');
+            $submit.html('Now Vote');
             $submit.appendTo($el);
             return this;
         }

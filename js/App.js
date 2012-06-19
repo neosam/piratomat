@@ -28,11 +28,24 @@ define([
     return function() {
         var voteCollection = generateVotes(),
             $pirateLogo = $('<img src="media/piraten-landshut.svg">'),
-            view = new Piratomat.VoteView({
+            voteView = new Piratomat.VoteView({
+                model: voteCollection
+            }),
+            resultView = new Piratomat.ResultView({
                 model: voteCollection
             });
         $pirateLogo.addClass('logo');
         $pirateLogo.appendTo('body');
-        view.render().$el.appendTo('body');
+        voteView.showResultView = function() {
+            voteView.$el.hide();
+            resultView.$el.show();
+        };
+        resultView.doNewVote = function() {
+            resultView.$el.hide();
+            voteView.$el.show();
+        };
+        resultView.render().$el.hide();
+        voteView.render().$el.appendTo('body');
+        resultView.$el.appendTo('body');
     };
 });
