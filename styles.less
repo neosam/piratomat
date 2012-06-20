@@ -1,47 +1,111 @@
+/*  This file is part of Piratomat.
+
+    Piratomat is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Piratomat is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Piratomat.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*
+ * The background of the vote page.
+ * Pirates will choose some kind of orange.
+ */
+@backgroundColor: orange;
+
+/*
+ * Logo scaling.
+ */
+@logoWidth: 400px;
+
+/*
+ * Edgesize of a checkbox.
+ */
+@boxSize: 64px;
+
+/*
+ * For percent-view we need some extra values.
+ * @percentDist is the padding size from the top to get
+ *              a centered vertical align.
+ * @percentSize is just the font size.
+ * @percnetColor is the font color.
+ */
+@percentDist: 15px;
+@percentSize: 20pt;
+@percentColor: #00f;
+
+/*
+ * Where to load the empty vote field and the cross vote field?
+ */
+@voteField: url(media/voteField.svg);
+@voteFieldCross: url(media/voteFieldCross.svg);
+
+
+
+/*
+ * Setting style here
+ */
 body {
+    /* Scale logo */
     .logo {
-        width: 400px;
+        width: @logoWidth;
     }
 
-    background-color: orange;
+    background-color: @backgroundColor;
+
+    /* Settings for our table */
     .voteView table {
         border-collapse: collapse;
         border-spacing: 0px;
-        empty-cells: hide;
+        border: none;
+
+        /* Let the first column expand. */
         :first-child {
             width: 100%;
         }
+
+        /* Draw border but not on the firt field. */
         td {
             border: solid black 1px;
         }
         td:empty {
             visibility: hidden;
         }
+
+        div.voteResult {
+            width: @boxSize;
+            height: @boxSize - @percentDist;
+            display: inline-block;
+            text-align: center;
+            color: @percentColor;
+            font-size: @percentSize;
+            vertical-align: middle;
+            padding-top: @percentDist;
+          
+        }
     }
 
 
     .voteView div.voteField {
-        width: 64px;
-        height: 64px;
+        width: @boxSize;
+        height: @boxSize;
         display: inline-block;
-        background: url(media/voteField.svg);
+        background: @voteField;
     }
     .voteView div.voteChecked {
-        background: url(media/voteFieldCross.svg);
+        background: @voteFieldCross;
     }
 
     td {
 
     }
 
-    div.voteResult {
-        width: 64px;
-        height: 64px;
-        display: inline-block;
-        text-align: center;
-        color: #0000ff;
-        font-size: 14pt;
-        vertical-align: middle;
-        border: solid black 1px;
-    }
+
 }
