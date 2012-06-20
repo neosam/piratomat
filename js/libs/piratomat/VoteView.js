@@ -48,10 +48,10 @@ define([
                 $firstRow = $('<tr>'),
                 $submit = $('<button>');
             $el.html('');
-            $firstRow.append($('<td>'));
-            $firstRow.append($('<td>Ja</td>'));
-            $firstRow.append($('<td>Nein</td>'));
-            $firstRow.append($('<td>Wei&szlig; nicht</td>'));
+            $firstRow.append($('<th>'));
+            $firstRow.append($('<th>Ja</th>'));
+            $firstRow.append($('<th>Nein</th>'));
+            $firstRow.append($('<th>Wei&szlig; nicht</th>'));
             $table.append($firstRow);
             this.model.each(function(model)  {
                 new SingleVoteView({
