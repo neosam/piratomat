@@ -62,6 +62,25 @@ define(['use!backbone'], function(Backbone) {
         },
 
         initialize: function() {
+            /**
+             * Set attribute fron local storage if it exists and !== zero.
+             */
+            var self = this,
+                setAttribute = function(attributeName, storageAttribute) {
+                var storage = window.localStorage,
+                    storageKey = self.get('voteId') + '_' + self.get('order') + '_' + storageAttribute,
+                    storageValue = parseInt(storage.getItem(storageKey)),
+                    attributeValue = self.get(attributeName);
+                debugger;
+                if (attributeValue !== 0) {
+                    return;
+                } else if (storageValue !== undefined) {
+                    self.set(attributeName, storageValue);
+                }
+            };
+            setAttribute('yesVotes', 'yes');
+            setAttribute('noVotes', 'no');
+            setAttribute('wtfVotes', 'wtf');
             this.on('change:yesVotes', this.saveLocal);
             this.on('change:noVotes', this.saveLocal);
             this.on('change:wtfVotes', this.saveLocal);
