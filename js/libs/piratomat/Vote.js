@@ -69,12 +69,12 @@ define(['use!backbone'], function(Backbone) {
                 setAttribute = function(attributeName, storageAttribute) {
                 var storage = window.localStorage,
                     storageKey = self.get('voteId') + '_' + self.get('order') + '_' + storageAttribute,
-                    storageValue = parseInt(storage.getItem(storageKey)),
+                    storageValue = parseInt(storage.getItem(storageKey), 10),
                     attributeValue = self.get(attributeName);
                 debugger;
                 if (attributeValue !== 0) {
                     return;
-                } else if (storageValue !== undefined) {
+                } else if (!isNaN(storageValue)) {
                     self.set(attributeName, storageValue);
                 }
             };

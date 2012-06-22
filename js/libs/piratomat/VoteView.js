@@ -36,6 +36,17 @@ define([
         },
 
         doVote: function() {
+            var verified = true;
+            /* Verify if all fields are checked */
+            this.model.each(function(vote) {
+                if (vote.get('state') === '')
+                    verified = false;
+            });
+            if (!verified) {
+                return;
+            }
+
+            /* Then apply */
             this.model.each(function(vote) {
                 vote.addVote();
             });
