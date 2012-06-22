@@ -24,6 +24,7 @@
  */
 
 /*global define*/
+/*global window*/
 define(['use!backbone'], function(Backbone) {
     'use strict';
     return Backbone.Model.extend({
@@ -60,6 +61,12 @@ define(['use!backbone'], function(Backbone) {
             state: ''
         },
 
+        initialize: function() {
+            this.on('change:yesVotes', this.saveLocal);
+            this.on('change:noVotes', this.saveLocal);
+            this.on('change:wtfVotes', this.saveLocal);
+        },
+
         /**
          * Applies the current state to the model.
          * 
@@ -91,6 +98,16 @@ define(['use!backbone'], function(Backbone) {
             }
             this.set('state', '');
             return returnValue;
+        },
+
+        /**
+         * Saves the vote locally using the key-value webstorage
+         */
+        saveLocal: function() {
+            var storage = window.localStorage;
+            storage.setItem(this.get('voteId') + "_" + this.get('order') + "_yes", this.get('yesVotes'));
+            storage.setItem(this.get('voteId') + "_" + this.get('order') + "_no", this.get('noVotes'));
+            storage.setItem(this.get('voteId') + "_" + this.get('order') + "_wtf", this.get('wtfVotes'));
         }
     });
 });

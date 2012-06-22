@@ -1,5 +1,5 @@
 {
-	"id": "landshut1",
+	"id": "test",
 	"questions": [
 		{
 			"question": "Glauben Sie, daß in den Parlamenten ihre Meinung vertreten ist?"

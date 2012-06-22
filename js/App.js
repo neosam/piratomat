@@ -7,10 +7,11 @@ define([
     var generateVotes = function(callback) {
         var all = new Piratomat.VoteCollection();
         $.getJSON('js/questions.js', function(data) {
-            _.each(data.questions, function(question) {
+            _.each(data.questions, function(question, i) {
                 var vote = new Piratomat.Vote({
+                    voteId: data.id,
                     question: question.question, /* wonderful line */
-                    order: 0
+                    order: i
                 });
                 all.add(vote);
             });
