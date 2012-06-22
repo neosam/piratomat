@@ -16,6 +16,7 @@
 
 /*global require*/
 /*global __dirname*/
+/*global console*/
 (function() {
     var staticServe = require('node-static'),
         fileServer = new staticServe.Server(__dirname),
@@ -25,9 +26,20 @@
             });
         },
         http = require('http'),
-        app = http.createServer(handler);
+        app = http.createServer(handler),
+        io = require('socket.io').listen(app),
+        _ = require('underscore'),
+        clients = []; /* Client sockets goes here */
         
  
     app.listen(8080);
 
+    io.sockets.on('connection', function(socket) {
+        console.log('a socket connected');
+        clients.push(socket);
+        socket.on('vote', function(vote) {
+            console.log('voted');
+            socket.broadcast.emit('push_' + vote.order, vote);
+        });
+    });
 })();
