@@ -6,6 +6,11 @@ define([
         'use!underscore',
         'piratomat'
 ], function($, _, Piratomat){
+    /**
+     * Extends a vote to be shared via network.
+     * @param vote The vote object which should be extended.
+     * @param socket socket.io object which stores the connection to the server.
+     */
     var injectServerMode = function(vote, socket) {
         var enableEmit = true;
         vote.on('change:yesVotes change:noVotes change:wtfVotes', function() {
@@ -24,6 +29,11 @@ define([
         });
     },
 
+    /**
+     * Generate the votes
+     * @param socket The connection to the server
+     * @param callback Will be called when the votes are created.
+     */
         generateVotes = function(socket, callback) {
         var all = new Piratomat.VoteCollection();
         $.getJSON('js/questions.js', function(data) {
@@ -40,6 +50,9 @@ define([
             });
             callback(all);
         });
+        if (socket !== null) {
+            socket.emit('sync');
+        }
     };
 
 

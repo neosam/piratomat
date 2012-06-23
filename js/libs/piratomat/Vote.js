@@ -71,7 +71,6 @@ define(['use!backbone'], function(Backbone) {
                     storageKey = self.get('voteId') + '_' + self.get('order') + '_' + storageAttribute,
                     storageValue = parseInt(storage.getItem(storageKey), 10),
                     attributeValue = self.get(attributeName);
-                debugger;
                 if (attributeValue !== 0) {
                     return;
                 } else if (!isNaN(storageValue)) {

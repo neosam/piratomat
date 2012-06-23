@@ -29,16 +29,21 @@
         app = http.createServer(handler),
         io = require('socket.io').listen(app),
         _ = require('underscore'),
-        clients = []; /* Client sockets goes here */
+        votes = []; /* Votes goes here */
         
  
     app.listen(8080);
 
     io.sockets.on('connection', function(socket) {
         console.log('a socket connected');
-        clients.push(socket);
+        socket.on('sync', function() {
+            _.each(votes, function(vote) {
+                socket.emit('push_' + vote.order, vote);
+            });
+        });        
         socket.on('vote', function(vote) {
             console.log('voted');
+            votes[vote.order] = vote;
             socket.broadcast.emit('push_' + vote.order, vote);
         });
     });
